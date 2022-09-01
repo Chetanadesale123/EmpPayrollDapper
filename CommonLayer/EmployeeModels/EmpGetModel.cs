@@ -6,7 +6,6 @@ namespace CommonLayer.EmployeeModels
 {
     public class EmpGetModel
     {
-        //FirstName,LastName,Address,Mobile
         public int id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

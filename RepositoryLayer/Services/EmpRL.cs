@@ -28,7 +28,6 @@ namespace RepositoryLayer.Services
                     var sql = "insert into tbl_Employees(FirstName,LastName,Address,Mobile) values(@FirstName,@LastName,@Address,@Mobile)";
                     var result = sqlConnection.Execute(sql, emp);
                     return result;
-                   // FirstName,LastName,Address,Mobile
                 }
             }
             catch (Exception ex)
@@ -52,6 +51,50 @@ namespace RepositoryLayer.Services
                     var sql = "select * from tbl_Employees";
                     var result = sqlConnection.Query<EmpGetModel>(sql);
                     return result.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+        }
+        public int UpdateEmployee(int id, EmpPostModel emp)
+        {
+            SqlConnection sqlConnection = new SqlConnection(connetionString);
+            try
+            {
+                using (sqlConnection)
+                {
+                    sqlConnection.Open();
+                    var sql = $"Update tbl_Employees SET FirstName=@FirstName,LastName=@LastName,Address=@Address,Mobile=@Mobile where id={id}";
+                    var result = sqlConnection.Execute(sql, emp);
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+        }
+        public int DeleteEmployee(int id)
+        {
+            SqlConnection sqlConnection = new SqlConnection(connetionString);
+            try
+            {
+                using (sqlConnection)
+                {
+                    sqlConnection.Open();
+                    var sql = $"delete from tbl_Employees Where id={id}";
+                    var result = sqlConnection.Execute(sql);
+                    return result;
                 }
             }
             catch (Exception ex)

@@ -48,5 +48,39 @@ namespace DapperPractice.API.Controllers
                 throw ex;
             }
         }
+        [HttpPut("UpdateEmployee")]
+        public IActionResult UpdateEmployee(int id, EmpPostModel emp)
+        {
+            try
+            {
+                var result = iEmpBL.UpdateEmployee(id, emp);
+                if (result == 0)
+                {
+                    return this.BadRequest(new { sucess = false, Message = "Something went wrong while Updating Employee Details " });
+                }
+                return this.Ok(new { sucess = true, Message = "Upadate Sucessfully..." });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [HttpDelete("DeleteEmployee")]
+        public IActionResult DeleteEmployee(int id)
+        {
+            try
+            {
+                var result = iEmpBL.DeleteEmployee(id);
+                if (result == 0)
+                {
+                    return this.BadRequest(new { sucess = false, Message = "Something went wrong while Deleting Employee Record " });
+                }
+                return this.Ok(new { sucess = true, Message = $"Employee Data Deleted Sucessfully id={id}" });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

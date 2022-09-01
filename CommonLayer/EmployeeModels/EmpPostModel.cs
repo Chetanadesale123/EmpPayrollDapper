@@ -25,7 +25,5 @@ namespace CommonLayer.EmployeeModels
         //[DefaultValue(91)]
         //[RegularExpression("^[1 - 9]{2}[6-9]{1}[0-9]{9}$", ErrorMessage = "Please Enter Valid Mobile No  Eg.919511949586")] //First Name Validation
         public string Mobile { get; set; }
-
-
     }
 }
